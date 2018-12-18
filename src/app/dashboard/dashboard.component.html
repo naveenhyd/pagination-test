@@ -1,0 +1,14 @@
+<p>
+  dashboard works!
+</p>
+<p>Parent: {{message}}</p>
+<p>Current Page {{currentPage}}</p>
+<app-pagination (messageEvent)="receiveMessage($event)"
+(goNext)="receiveNextPage()"
+(goPrev) = "receivePrevPage()"
+[currentParentPage]="currentPageAppend"
+></app-pagination>
+
+<ul>
+  <li *ngFor="let user of usersList">{{user.id}} -- {{user.first_name}} -- {{user.last_name}}</li>
+</ul>
