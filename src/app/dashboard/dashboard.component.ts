@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +12,8 @@ export class DashboardComponent implements OnInit {
   constructor(private http:Http) { }
   
   message="Naveen";
-  currentPage = 1;
+  currentPage:number;
+  page:number;
   currentPageAppend = 'Parent ';
   usersList:['sdf','fff'];
 
@@ -37,9 +38,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getRecords(){
+    if(!this.currentPage){
+      this.currentPage = 1;
+    }
     this.http.get('http://localhost:3000/users?_page='+this.currentPage).subscribe(
       (response)=>{
-        console.log(response);
+        // console.log(response);
         const data = JSON.parse(response['_body']);
 
         this.usersList = data;
@@ -48,6 +52,18 @@ export class DashboardComponent implements OnInit {
       (error)=>console.log(error)
     );
     
+  }
+
+  setPage(page){
+    this.currentPage = page;
+    this.getRecords();
+  }
+  pageChanged(page) {
+    if(!page){
+      return;
+    }
+    console.log('Page changed: ' + page);
+    this.setPage(page);
   }
 
 }
