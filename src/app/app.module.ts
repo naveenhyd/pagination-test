@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    NgbModule
+    NgbModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

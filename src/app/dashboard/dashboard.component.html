@@ -13,3 +13,10 @@
   <li *ngFor="let user of usersList">{{user.id}} -- {{user.first_name}} -- {{user.last_name}}</li>
 </ul>
 <ngb-pagination (pageChange)="pageChanged($event)"  [collectionSize]="70" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="line-scale">
+ <p style="font-size: 20px; color: white"></p>
+</ngx-spinner>

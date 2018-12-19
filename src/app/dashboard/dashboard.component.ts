@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,9 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 })
 export class DashboardComponent implements OnInit {
   
-  constructor(private http:Http) { }
+  constructor(private http:Http,
+    private spinner:NgxSpinnerService
+    ) { }
   
   message="Naveen";
   currentPage:number;
@@ -18,7 +21,17 @@ export class DashboardComponent implements OnInit {
   usersList:['sdf','fff'];
 
   ngOnInit() {
+    this.spinner.show();
     this.getRecords();
+    
+
+    /** spinner starts on init */
+    // this.spinner.show();
+ 
+    // setTimeout(() => {
+    //     /** spinner ends after 5 seconds */
+    //     this.spinner.hide();
+    // }, 5000);
   }
   
 
@@ -48,6 +61,7 @@ export class DashboardComponent implements OnInit {
 
         this.usersList = data;
         console.log(data);
+        this.spinner.hide();
       },
       (error)=>console.log(error)
     );
